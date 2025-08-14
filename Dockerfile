@@ -34,4 +34,4 @@ COPY --from=build /app/build/install /app/install
 EXPOSE 8080
 
 # Adjust application name if different in settings.gradle.kts
-CMD ["/app/install/sitEvent/bin/sitEvent"]
+CMD ["/app/install/sitevent/bin/sitevent"]
