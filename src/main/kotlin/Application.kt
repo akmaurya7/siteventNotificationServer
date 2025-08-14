@@ -15,9 +15,8 @@ fun Application.module() {
     configureMonitoring()
     configureRouting()
 
-    // Load service account from resources
-    val serviceAccount: InputStream = this::class.java.classLoader
-        .getResourceAsStream("serviceAccountKey.json")
+    val serviceAccount = this::class.java.classLoader
+        .getResourceAsStream("service_account_key.json")
         ?: throw IllegalStateException("Firebase service account file not found")
 
     val options = FirebaseOptions.builder()
@@ -25,4 +24,5 @@ fun Application.module() {
         .build()
 
     FirebaseApp.initializeApp(options)
+
 }
