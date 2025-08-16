@@ -2,16 +2,14 @@ package com.example.sitevent.Notification.FirebaseMessaging
 
 import com.google.firebase.messaging.Message
 import com.google.firebase.messaging.Notification
-import kotlinx.serialization.Serializable
 
-@Serializable
+
 data class SendMessageDto(
     val to: String?,
     val notification: NotificationBody,
     val data: Map<String, String> = emptyMap()  // Add data payload for custom fields
 )
 
-@Serializable
 data class NotificationBody(
     val title: String,
     val body: String,
