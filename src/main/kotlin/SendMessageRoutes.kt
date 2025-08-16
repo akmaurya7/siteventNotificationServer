@@ -10,20 +10,34 @@ import io.ktor.server.routing.route
 
 fun Route.sendNotification() {
     post("/send") {
-        val body = call.receiveNullable<SendMessageDto>() ?: run {
-            call.respond(HttpStatusCode.BadRequest)
-            return@post
+        try {
+            val body = call.receiveNullable<SendMessageDto>() ?: run {
+                println("Received null body in /send")
+                call.respond(HttpStatusCode.BadRequest)
+                return@post
+            }
+            println("Received send request: $body")
+            FirebaseMessaging.getInstance().send(body.toMessage())
+            call.respond(HttpStatusCode.OK)
+        } catch (e: Exception) {
+            println("Error in /send: ${e.message}")
+            call.respond(HttpStatusCode.InternalServerError, "Error: ${e.message}")
         }
-        FirebaseMessaging.getInstance().send(body.toMessage())
-        call.respond(HttpStatusCode.OK)
     }
 
     post("/broadcast") {
-        val body = call.receiveNullable<SendMessageDto>() ?: run {
-            call.respond(HttpStatusCode.BadRequest)
-            return@post
+        try {
+            val body = call.receiveNullable<SendMessageDto>() ?: run {
+                println("Received null body in /broadcast")
+                call.respond(HttpStatusCode.BadRequest)
+                return@post
+            }
+            println("Received broadcast request: $body")
+            FirebaseMessaging.getInstance().send(body.toMessage())
+            call.respond(HttpStatusCode.OK)
+        } catch (e: Exception) {
+            println("Error in /broadcast: ${e.message}")
+            call.respond(HttpStatusCode.InternalServerError, "Error: ${e.message}")
         }
-        FirebaseMessaging.getInstance().send(body.toMessage())
-        call.respond(HttpStatusCode.OK)
     }
 }
