@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import io.ktor.server.application.*
+import startSelfPing
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.util.Base64
@@ -16,7 +17,7 @@ fun Application.module() {
     configureSerialization()
     configureMonitoring()
     configureRouting()
-    startAutoGetScheduler()
+    startSelfPing()
 
     val credentials = try {
         loadGoogleCredentials(this)
