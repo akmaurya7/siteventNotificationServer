@@ -5,7 +5,7 @@ import io.ktor.server.application.*
 import kotlinx.coroutines.*
 
 // Call this from your Application.module() after you bind routes (and ensure /keepalive exists)
-fun Application.startSelfPing(intervalMs: Long =  10 * 1000L) {
+fun Application.startSelfPing(intervalMs: Long =  10 * 60 * 1000L) {
     val port = System.getenv("PORT")?.toInt() ?: 8080
     val url = "http://127.0.0.1:$port/keepalive"
     val client = HttpClient(CIO)
