@@ -21,7 +21,7 @@ dependencies {
 
     implementation("io.ktor:ktor-serialization-gson-jvm:3.2.3")
 
-    implementation("com.google.firebase:firebase-admin:9.2.0")
+    implementation("com.google.firebase:firebase-admin:9.5.0")
 
     implementation("com.google.code.gson:gson:2.10.1")
 
