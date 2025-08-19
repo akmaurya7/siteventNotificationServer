@@ -16,6 +16,7 @@ fun Application.module() {
     configureSerialization()
     configureMonitoring()
     configureRouting()
+    startAutoGetScheduler()
 
     val credentials = try {
         loadGoogleCredentials(this)
